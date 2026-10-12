@@ -3,7 +3,4 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm install",
-  "env": {
-    "backend_url": "@backend_url"
-  }
 }

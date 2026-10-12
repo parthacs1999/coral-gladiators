@@ -132,7 +132,7 @@ export default function TracePage() {
     try {
       setError(null);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8000"}/traces?limit=${LIMIT}&offset=${offset}`,
+        `${process.env.backend_url ?? "http://localhost:8000"}/traces?limit=${LIMIT}&offset=${offset}`,
       );
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data: TracesResponse = await res.json();
@@ -159,7 +159,7 @@ export default function TracePage() {
     if (!confirm("Delete all trace logs?")) return;
     setClearing(true);
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8000"}/traces`, { method: "DELETE" });
+      await fetch(`${process.env.backend_url ?? "http://localhost:8000"}/traces`, { method: "DELETE" });
       setTraces([]);
       setTotal(0);
       setOffset(0);
@@ -183,8 +183,8 @@ export default function TracePage() {
   const avgMs =
     traces.length > 0
       ? Math.round(
-          traces.reduce((a, t) => a + (t.execution_ms ?? 0), 0) / traces.length,
-        )
+        traces.reduce((a, t) => a + (t.execution_ms ?? 0), 0) / traces.length,
+      )
       : 0;
   const cacheHits = traces.filter((t) => t.cache_hit === true).length;
   const multiSrc = traces.filter(
@@ -233,10 +233,9 @@ export default function TracePage() {
             <button
               onClick={() => setAutoRefresh(!autoRefresh)}
               className={`flex items-center gap-2 px-3 py-[5px] rounded-full border text-[11px] font-medium tracking-wider transition-all
-                ${
-                  autoRefresh
-                    ? "bg-[#2A2420] border-[#D97B4F]/40 text-[#D97B4F]"
-                    : "bg-[#2A2420] border-[#3A3430] text-[#6B5E52] hover:text-[#9B8E82]"
+                ${autoRefresh
+                  ? "bg-[#2A2420] border-[#D97B4F]/40 text-[#D97B4F]"
+                  : "bg-[#2A2420] border-[#3A3430] text-[#6B5E52] hover:text-[#9B8E82]"
                 }`}
             >
               {autoRefresh && (

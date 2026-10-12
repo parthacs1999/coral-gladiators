@@ -556,7 +556,7 @@ export default function ReportPage() {
       try {
         const parsed = JSON.parse(saved) as InvestigationResult;
         setTimeout(() => setResult(parsed), 0);
-      } catch {}
+      } catch { }
     }
   }, []);
 
@@ -568,7 +568,7 @@ export default function ReportPage() {
       const normalized = query.trim().toLowerCase().startsWith("investigate")
         ? query.trim()
         : `Investigate ${query.trim()}`;
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8000"}/investigate`, {
+      const res = await fetch(`${process.env.backend_url ?? "http://localhost:8000"}/investigate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ request: normalized }),
@@ -689,10 +689,9 @@ export default function ReportPage() {
                 onClick={runInvestigation}
                 disabled={loading}
                 className={`px-6 py-3 rounded-md text-[11px] font-semibold tracking-widest transition-all whitespace-nowrap
-                  ${
-                    loading
-                      ? "bg-[#EDE7DF] text-[#C4B8AC] cursor-not-allowed"
-                      : "bg-[#1A1612] hover:bg-[#2A2420] text-[#F7F3EE] cursor-pointer"
+                  ${loading
+                    ? "bg-[#EDE7DF] text-[#C4B8AC] cursor-not-allowed"
+                    : "bg-[#1A1612] hover:bg-[#2A2420] text-[#F7F3EE] cursor-pointer"
                   }`}
               >
                 {loading ? "SCREENING..." : "SCREEN"}

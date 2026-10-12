@@ -79,8 +79,8 @@ function EventCard({
             {/* Arrow pointer toward center spine */}
             <div
                 className={`absolute top-6 ${side === "left"
-                        ? "right-0 border-l-8 border-l-[#E0D8CF] border-y-[6px] border-y-transparent"
-                        : "left-0 border-r-8 border-r-[#E0D8CF] border-y-[6px] border-y-transparent"
+                    ? "right-0 border-l-8 border-l-[#E0D8CF] border-y-[6px] border-y-transparent"
+                    : "left-0 border-r-8 border-r-[#E0D8CF] border-y-[6px] border-y-transparent"
                     }`}
                 style={{ width: 0, height: 0 }}
             />
@@ -171,7 +171,7 @@ export default function TimelinePage() {
         setError(null);
         setEvents([]);
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8000"}/evidence/${encodeURIComponent(name)}`);
+            const res = await fetch(`${process.env.backend_url ?? "http://localhost:8000"}/evidence/${encodeURIComponent(name)}`);
             if (!res.ok) throw new Error(`HTTP ${res.status} — backend unreachable`);
             const data = await res.json();
             setEvents(data.events || []);
@@ -391,8 +391,8 @@ export default function TimelinePage() {
                                             key={t}
                                             onClick={() => setFilter(t)}
                                             className={`text-[11px] font-medium tracking-[0.12em] px-3.5 py-[6px] rounded-full border transition-colors duration-150 ${isActive
-                                                    ? "bg-[#1A1612] border-[#1A1612] text-[#F7F3EE]"
-                                                    : "bg-[#EDE7DF] border-[#D8CEBF] text-[#9B8E82] hover:text-[#1A1612] hover:border-[#C4B8AC]"
+                                                ? "bg-[#1A1612] border-[#1A1612] text-[#F7F3EE]"
+                                                : "bg-[#EDE7DF] border-[#D8CEBF] text-[#9B8E82] hover:text-[#1A1612] hover:border-[#C4B8AC]"
                                                 }`}
                                         >
                                             {t === "all"

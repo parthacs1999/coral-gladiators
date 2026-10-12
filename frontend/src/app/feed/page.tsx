@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
-const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8000";
+const BACKEND = process.env.backend_url ?? "http://localhost:8000";
 
 interface SanctionItem {
   entity_name: string;
@@ -168,11 +168,10 @@ export default function FeedPage() {
             </button>
             <button
               onClick={() => setAutoRefresh((r) => !r)}
-              className={`flex items-center gap-2 border rounded-full px-3 py-[5px] text-[11px] font-medium tracking-wide transition-colors cursor-pointer bg-transparent ${
-                autoRefresh
+              className={`flex items-center gap-2 border rounded-full px-3 py-[5px] text-[11px] font-medium tracking-wide transition-colors cursor-pointer bg-transparent ${autoRefresh
                   ? "border-[#D97B4F]/40 text-[#D97B4F]"
                   : "border-[#3A3430] text-[#3A3430] hover:text-[#6B5E52]"
-              }`}
+                }`}
             >
               {autoRefresh && (
                 <div className="w-1.5 h-1.5 rounded-full bg-[#D97B4F] animate-pulse-dot" />
@@ -224,11 +223,10 @@ export default function FeedPage() {
                 <button
                   key={t}
                   onClick={() => setTab(t)}
-                  className={`px-6 py-2 text-[11px] font-medium tracking-widest uppercase border-none cursor-pointer transition-colors ${
-                    tab === t
+                  className={`px-6 py-2 text-[11px] font-medium tracking-widest uppercase border-none cursor-pointer transition-colors ${tab === t
                       ? "bg-[#1A1612] text-[#F7F3EE]"
                       : "bg-[#F7F3EE] text-[#9B8E82] hover:bg-[#EDE7DF]"
-                  }`}
+                    }`}
                 >
                   {t === "sanctions"
                     ? `Sanctions (${sanctions.length.toLocaleString()})`

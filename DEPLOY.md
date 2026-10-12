@@ -29,7 +29,7 @@
 ## Step 3 — Deploy Frontend to Vercel
 1. `cd frontend && npx vercel`
 2. When prompted, add environment variable:
-   - `NEXT_PUBLIC_BACKEND_URL` = your Render URL from Step 2
+   - `backend_url` = your Render URL from Step 2
 3. Or set it in Vercel dashboard → Settings → Environment Variables
 
 ## Step 4 — Update Slack Webhook URL
